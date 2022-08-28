@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestão Escolar</title>
-</head>
-<body>
-    <h1>Gestão Escolar</h1>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css') }}"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap"
+            rel="stylesheet"
+        />
+        <title>Gestão Escolar Web</title>
+    </head>
+    <body>
+        <header>
+            <div class="conteudo-header">
+                <h1>Gestão Escolar Web</h1>
+            </div>
+        </header>
 
-    {% block conteudo %}
-    {% endblock %}
-</body>
+        <main>
+            {% block conteudo %}
+            
+            {% endblock %}
+        </main>
+    </body>
 </html>

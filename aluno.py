@@ -1,5 +1,7 @@
 import sqlite3
-#teste
+# teste
+
+
 class Aluno:
     def __init__(self, nome, cpf, email, telefone=None):
 
@@ -7,7 +9,7 @@ class Aluno:
 
         self.cpf = cpf
 
-        #self.__matricula = 0
+        # self.__matricula = 0
         # só a classe podem 'alterar' esse metodo
         # self.incrementar_matricula()
 
@@ -92,12 +94,62 @@ class Aluno:
         # executando a ação
         cursor.execute(sql)
 
-        #lista de alunos recuperados do bd
+        # lista de alunos recuperados do bd
         listaAlunos = cursor.fetchall()
 
         conexao.close()
 
         return listaAlunos
+
+    @classmethod
+    def listaAlunoMatricula(cls, matricula):
+
+        # abrindo conexao
+        conexao = sqlite3.connect("gestao_escolar.db")
+
+        # utilizando o metodo cursor
+        # para fazer alguma ação no bd
+        cursor = conexao.cursor()
+
+        sql = f"""
+            SELECT * FROM Alunos WHERE matricula = '{matricula}'
+        """
+        # executando a ação
+        cursor.execute(sql)
+
+        # lista de alunos recuperado do bd
+        listaAluno = cursor.fetchone()
+
+        conexao.close()
+
+        return listaAluno
+
+    # atualizar aluno no bd
+    @classmethod
+    def atualizar(cls, matricula, nome, cpf, telefone, email):
+        # como conectar no meu banco
+        # abrindo conexao
+        conexao = sqlite3.connect("gestao_escolar.db")
+
+        # utilizando o metodo cursor
+        # para fazer alguma ação no bd
+        cursor = conexao.cursor()
+
+        sql = f"""
+            UPDATE Alunos SET
+            nome = '{nome}',
+            cpf = '{cpf}',
+            telefone = '{telefone}',
+            email = '{email}'
+            WHERE matricula = '{matricula}'
+        """
+        # executando a ação
+        cursor.execute(sql)
+
+        # salvando a alteração da tabela(confrima)
+        conexao.commit()
+
+        conexao.close()
 
     def __repr__(self):
 

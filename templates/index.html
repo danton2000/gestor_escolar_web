@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block conteudo %}
-<h2>Tela Inicial</h2>
+<div class="conteudo-principal">
+    <h2>Menu Principal</h2>
 
-<a href="/cadastro/alunos">Adicionar Aluno</a>
+    <div class="menu">
+        <a href="/listar/alunos" class="botao-primario">Listar Alunos</a>
+    </div>
+</div>
 {% endblock %}

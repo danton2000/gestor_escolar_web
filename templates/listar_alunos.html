@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block conteudo %}
+<div class="conteudo-principal">
+    <h2>Lista de Alunos</h2>
+
+    <div class="conteudo-tabela">
+        <a href="/cadastro/alunos" class="botao-primario">Adicionar um aluno</a>
+
+        <table>
+            <!-- cabeçalho da tabela -->
+            <tr>
+                <th>Matricula</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+                <th></th>
+            </tr>
+            <!-- conteudo(corpo) da tabela -->
+            {% for aluno in alunos %}
+            <tr>
+                <td>{{ aluno[0] }}</td>
+                <td>{{ aluno[1] }}</td>
+                <td>{{ aluno[2] }}</td>
+                <td>{{ aluno[3] }}</td>
+                <td>{{ aluno[4] }}</td>
+                <td><a href="/editar/aluno/{{ aluno[0] }}" class="botao-primario">Editar</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/" class="botao-primario">Voltar</a>
+    </div>
+</div>
+{% endblock %}

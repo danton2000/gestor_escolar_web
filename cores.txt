@@ -1,0 +1,11 @@
+# azul - escuro
+RGB : 12, 44, 82
+
+# preto
+rgb : 18, 18, 18
+
+# azul - normal
+RGB : 94, 157, 200
+
+# azul - claro
+RGB : 220, 240, 247

@@ -1,0 +1,165 @@
+/* criando variaveis, com as cores */
+:root {
+    --azul-fraco: rgb(220, 240, 247);
+    --azul-escuro: rgb(12, 44, 82);
+    --preto: rgb(48, 48, 48);
+    --azul-normal: rgb(94, 157, 200);
+    --verde-normal: rgb(21, 238, 108);
+}
+
+/* resetando as configurações do css, que o navegador cria */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* usando a font do google fonts */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--azul-fraco);
+}
+
+a {
+    text-decoration: none;
+}
+
+/* botoes */
+.botao-primario {
+    display: flex;
+    background-color: var(--azul-escuro);
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3rem;
+}
+
+.botao-primario:hover {
+    background-color: var(--azul-normal);
+    color: #fff;
+    transition: 300ms;
+}
+
+/* Cabeçalho do projeto */
+header .conteudo-header {
+    background-color: var(--azul-escuro);
+    padding: 1rem;
+}
+
+header .conteudo-header h1 {
+    color: #fff;
+}
+
+/* Conteudo principal */
+main .conteudo-principal {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .conteudo-principal h2 {
+    margin: 1rem 0 1rem 0;
+    font-size: 3rem;
+    color: var(--preto);
+    letter-spacing: .1rem;
+}
+
+/* PAGINA PRINCIPAL */
+main .conteudo-principal .menu {
+    width: 30rem;
+}
+
+main .conteudo-principal .menu .botao-primario {
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+/* PAGINA TABELA */
+main .conteudo-principal .conteudo-tabela {
+    width: 60rem;
+}
+
+main .conteudo-principal .conteudo-tabela .botao-primario {
+    height: 2rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+main .conteudo-principal .conteudo-tabela table {
+    margin: 1rem 0 1rem 0;
+    width: 100%;
+}
+
+main .conteudo-principal .conteudo-tabela table th {
+    background: var(--azul-escuro);
+    color: #fff;
+    padding: 0.5rem;
+}
+
+main .conteudo-principal .conteudo-tabela table td {
+    background: #fff;
+    color: var(--preto);
+    padding: 0.5rem;
+}
+
+/* PAGINA FORMULARIOS(CADASTRO/EDITAR) */
+main .conteudo-principal .conteudo-formulario {
+    width: 40rem;
+}
+
+main .conteudo-principal .conteudo-formulario .campos-formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+main .conteudo-principal .conteudo-formulario .campos-formulario label {
+    font-size: 1.2rem;
+    color: var(--preto);
+    text-align: left;
+}
+
+main .conteudo-principal .conteudo-formulario .campos-formulario input {
+    height: 3rem;
+    border-radius: 2rem;
+    margin: 1rem 0 1rem 0;
+    padding: 1rem;
+    color: var(--preto);
+    font-size: 1.2rem;
+    border: 1px solid var(--azul-escuro);
+}
+
+main .conteudo-principal .conteudo-formulario .campos-formulario input:focus {
+    outline: none;
+    border: 1px solid var(--azul-normal);
+}
+
+main .conteudo-principal .conteudo-formulario button {
+    background: var(--azul-normal);
+    color: #fff;
+    width: 100%;
+    height: 3rem;
+    text-align: center;
+    border-radius: 3rem;
+    margin: 1rem 0 1rem 0;
+    border: none;
+    font-size: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+main .conteudo-principal .conteudo-formulario button:hover {
+    background-color: var(--verde-normal);
+    color: #fff;
+    transition: 300ms;
+}
+
+main .conteudo-principal .conteudo-formulario .botao-primario {
+    height: 2rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
