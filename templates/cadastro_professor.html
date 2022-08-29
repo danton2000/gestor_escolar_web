@@ -1,0 +1,71 @@
+{% extends "base.html" %} 
+
+{% block conteudo %}
+<div class="conteudo-principal">
+    <h2>Cadastrar Professores</h2>
+
+    <div class="conteudo-formulario">
+        <form method="post">
+            <div class="campos-formulario">
+                <label for="nome_professor">Nome:</label>
+                <input
+                    type="text"
+                    id="nome_professor"
+                    name="nome_professor"
+                    required
+                />
+            </div>
+
+            <div class="campos-formulario">
+                <label for="cpf_professor">CPF:</label>
+                <input
+                    type="text"
+                    id="cpf_professor"
+                    name="cpf_professor"
+                    required
+                />
+            </div>
+
+            <div class="campos-formulario">
+                <label for="telefone_professor">Telefone:</label>
+                <input
+                    type="text"
+                    id="telefone_professor"
+                    name="telefone_professor"
+                />
+            </div>
+
+            <div class="campos-formulario">
+                <label for="email_professor">E-mail:</label>
+                <input
+                    type="email"
+                    id="email_professor"
+                    name="email_professor"
+                />
+            </div>
+
+            <div class="campos-formulario">
+                <label for="formacao_professor">Formação:</label>
+                <input
+                    type="text"
+                    id="formacao_professor"
+                    name="formacao_professor"
+                />
+            </div>
+
+            <div class="campos-formulario">
+                <label for="especialidade_professor">Especialidade:</label>
+                <input
+                    type="text"
+                    id="especialidade_professor"
+                    name="especialidade_professor"
+                />
+            </div>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <a href="/listar/professores" class="botao-primario">Voltar</a>
+    </div>
+</div>
+{% endblock %}
