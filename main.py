@@ -1,13 +1,14 @@
-import sqlite3
-
 from flask import Flask, render_template, request, redirect, url_for
 
 from aluno import Aluno
 
 from professor import Professor
 
-app = Flask(__name__)
+from curso import Curso
 
+import sqlite3
+
+app = Flask(__name__)
 
 @app.route("/")
 def index():
@@ -91,7 +92,7 @@ def cadastro_professor():
 
         Professor(nome = nome, cpf = cpf, telefone = telefone, email = email, formacao = formacao, especialidade = especialidade)
 
-        # redirecionando o cliente para a rota do listar_alunos
+        # redirecionando o cliente para a rota do listar_professores
         return redirect(url_for('listar_professores'))
 
     return render_template("cadastro_professor.html")
@@ -122,10 +123,61 @@ def editar_professor(matricula):
 
         Professor.atualizar(matricula = matricula, nome = nome, cpf = cpf, telefone = telefone, email=email, ativo = ativo, formacao = formacao, especialidade = especialidade)
 
-        # redirecionando o cliente para a rota do listar_alunos
+        # redirecionando o cliente para a rota do listar_professores
         return redirect(url_for('listar_professores'))
 
     return render_template("editar_professor.html", professor=professor)
+
+# Rotas Cursos
+@app.route("/listar/cursos")
+def listar_cursos():
+
+    cursos = Curso.listar()
+
+    return render_template("listar_cursos.html", cursos=cursos)
+
+@app.route("/cadastro/curso", methods=('GET', 'POST'))
+def cadastro_curso():
+
+    if request.method == 'POST':
+       
+        nome = request.form['nome_curso']
+
+        classificacao = request.form['classificacao_curso']
+
+        descricao = request.form['descricao_curso']
+    
+        Curso(nome = nome, classificacao = classificacao, descricao = descricao)
+
+        # redirecionando o cliente para a rota do listar_cursos
+        return redirect(url_for('listar_cursos'))
+
+    return render_template("cadastro_curso.html")
+
+@app.route("/editar/curso/<codigo>", methods=('GET', 'POST'))
+def editar_curso(codigo):
+
+    curso = Curso.listaCursoCodigo(codigo = codigo)
+
+    if request.method == 'POST':
+
+        nome = request.form['nome_curso']
+
+        classificacao = request.form['classificacao_curso']
+
+        ativo = 0
+
+        if 'ativo_curso' in request.form:
+            ativo = 1
+
+        descricao = request.form['descricao_curso']
+
+        Curso.atualizar(codigo = codigo, nome = nome, classificacao = classificacao, ativo = ativo, descricao=descricao)
+
+        # redirecionando o cliente para a rota do listar_cursos
+        return redirect(url_for('listar_cursos'))
+
+    return render_template("editar_curso.html", curso=curso)
 
 # Rotas Turmas
 @app.route("/cadastro/turma", methods=('GET', 'POST'))

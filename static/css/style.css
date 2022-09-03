@@ -115,11 +115,11 @@ main .conteudo-principal .conteudo-formulario {
 }
 
 main .conteudo-principal .conteudo-formulario .campos-formulario {
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
 main .conteudo-principal .conteudo-formulario .campos-formulario label {
-    display: block;
     font-size: 1.2rem;
     color: var(--preto);
     text-align: left;
@@ -136,24 +136,23 @@ main .conteudo-principal .conteudo-formulario .campos-formulario input {
     border: 1px solid var(--azul-escuro);
 }
 
-main .conteudo-principal .conteudo-formulario .checkbox label {
-    display: block;
-    font-size: 1.2rem;
-    color: var(--preto);
+main .conteudo-principal .conteudo-formulario .campos-formulario textarea {
     text-align: left;
-}
-
-main .conteudo-principal .conteudo-formulario .checkbox {
-    display: block;
-    text-align: left;
-}
-
-main .conteudo-principal .conteudo-formulario .checkbox input {
-    text-align: left;
+    resize: none;
+    border-radius: 1rem;
     margin: 1rem 0 1rem 0;
+    padding: 1rem;
+    color: var(--preto);
+    font-size: 1.2rem;
+    border: 1px solid var(--azul-escuro);
 }
 
-main .conteudo-principal .conteudo-formulario .checkbox input[type=checkbox] {
+main .conteudo-principal .conteudo-formulario .campos-formulario textarea:focus {
+    outline: none;
+    border: 1px solid var(--azul-normal);
+}
+
+main .conteudo-principal .conteudo-formulario input[type=checkbox] {
     width: 2rem;
     height: 2rem;
 }
@@ -162,6 +161,7 @@ main .conteudo-principal .conteudo-formulario .campos-formulario input:focus {
     outline: none;
     border: 1px solid var(--azul-normal);
 }
+
 
 main .conteudo-principal .conteudo-formulario button {
     background: var(--azul-normal);
