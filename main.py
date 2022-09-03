@@ -133,7 +133,7 @@ def cadastro_turma():
 
     if request.method == 'POST':
 
-        alunos = request.form.getlist['alunos']
+        alunos = request.form.getlist('alunos')
 
         return alunos
 
@@ -148,6 +148,13 @@ def cadastro_turma():
 
     professores = cur.fetchall()
 
+    sql_cursos = """
+        SELECT codigo, nome FROM cursos ORDER BY nome
+    """
+    cur.execute(sql_cursos)
+
+    cursos = cur.fetchall()
+
     sql_alunos = """
         SELECT matricula, nome FROM alunos ORDER BY nome
     """
@@ -161,4 +168,4 @@ def cadastro_turma():
     # A função render_template tem o propósito de ler os arquivos
     # Que estão disponíveis na pasta "templates" e apresentar no navegador do usuário
     # NOTE: o nome do arquivo é um texto
-    return render_template("cadastro_turma.html", professores=professores, alunos=alunos)
+    return render_template("cadastro_turma.html", professores=professores, cursos=cursos, alunos=alunos)

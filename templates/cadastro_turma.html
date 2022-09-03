@@ -1,27 +1,26 @@
 <!--
     A instrução para definir o HTML que terá a estrutura básica de toda a pagina que será desenvolvida dentro da aplicação web
 -->
-{% extends "base.html" %}
-{% block conteudo %}
+{% extends "base.html" %} {% block conteudo %}
 <!--
     O block (bloco) é o comando utilização para que o JINJA consiga
     substituir o conteúdo dentro da minha página de base
 
     No caso especifico existe um bloco que se chama conteudo
--->   
+-->
 <form method="post">
     <!--  -->
     <label for="data_inicio">Data Inicio</label>
     <!-- Não é obrigátorio que o atributo id seja igual ao atributo name -->
-    <input type="date" name="data_inicio" id="data_inicio">
+    <input type="date" name="data_inicio" id="data_inicio" />
 
-    <br>
+    <br />
 
     <label for="data_fim">Data Fim</label>
-    <input type="date" name="data_fim" id="data_fim">
+    <input type="date" name="data_fim" id="data_fim" />
 
     <!-- Declaração da tag que cria um dropbox (lista suspensa), o valor enviado para o Python será o conteudo do atributo value -->
-    <br>
+    <br />
 
     <label for="periodo">Periodo</label>
     <select name="periodo" id="periodo">
@@ -31,7 +30,7 @@
         <option value="Noite">Noite</option>
     </select>
 
-    <br>
+    <br />
 
     <label for="professor">Professor</label>
     <select name="professor" id="professor">
@@ -41,17 +40,32 @@
         {% endfor%}
     </select>
 
-    <hr>
+    <br />
+
+    <label for="cursos">Cursos</label>
+    <select name="cursos" id="cursos">
+        <!-- Conteudo da lista -->
+        {% for curso in cursos %}
+        <option value="{{curso[0]}}">{{curso[1]}}</option>
+        {% endfor%}
+    </select>
+
+    <hr />
 
     <h3>Alunos</h3>
 
     <!-- A proposta é que a matricula acontence no mesmo momento de cadastro de turma, Neste caso utilizamos o checkbox como uma forma de selecionar aluno, já que uma turma pode ter mais de um aluno
     IMPORTANTE: o atribut name dever igual para todas as tags para que possamos criar a lista(id tem que ser diferente) -->
     {% for aluno in alunos %}
-    <input type="checkbox" name="alunos" id="{{aluno[0]}}" value="{{aluno[0]}}">
+    <input
+        type="checkbox"
+        name="alunos"
+        id="{{aluno[0]}}"
+        value="{{aluno[0]}}"
+    />
     <label for="{{aluno[0]}}">{{aluno[1]}}</label>
     {% endfor%}
-    
+
     <button type="submit">Cadastrar</button>
 </form>
 {% endblock %}
