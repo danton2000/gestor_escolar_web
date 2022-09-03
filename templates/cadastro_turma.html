@@ -37,17 +37,17 @@
         <!-- Conteudo da lista -->
         {% for professor in professores %}
         <option value="{{professor[0]}}">{{professor[1]}}</option>
-        {% endfor%}
+        {% endfor %}
     </select>
 
     <br />
 
-    <label for="cursos">Cursos</label>
-    <select name="cursos" id="cursos">
+    <label for="curso">Cursos</label>
+    <select name="curso" id="curso">
         <!-- Conteudo da lista -->
         {% for curso in cursos %}
         <option value="{{curso[0]}}">{{curso[1]}}</option>
-        {% endfor%}
+        {% endfor %}
     </select>
 
     <hr />

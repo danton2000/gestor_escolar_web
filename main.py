@@ -6,7 +6,7 @@ from professor import Professor
 
 from curso import Curso
 
-import sqlite3
+from turma import Turma
 
 app = Flask(__name__)
 
@@ -180,42 +180,52 @@ def editar_curso(codigo):
     return render_template("editar_curso.html", curso=curso)
 
 # Rotas Turmas
+@app.route("/listar/turmas")
+def listar_turmas():
+
+    turmas = Turma.listar()
+
+    return render_template("listar_turmas.html", turmas=turmas)
+
+@app.route("/listar/turmas_alunos/<codigo_turma>")
+def listar_turmas_alunos(codigo_turma):
+
+    alunos = Turma.listarAlunos(codigo_turma)
+
+    return render_template("listar_turmas_alunos.html", alunos=alunos, codigo_turma=codigo_turma)
+
 @app.route("/cadastro/turma", methods=('GET', 'POST'))
 def cadastro_turma():
 
+    # CADASTRO TURMA
     if request.method == 'POST':
 
+        # print(request.form)
+
+        data_inicio = request.form['data_inicio']
+
+        data_fim = request.form['data_fim']
+
+        periodo = request.form['periodo']
+
+        matricula_professor = request.form['professor']
+
+        codigo_curso = request.form['curso']
+
+        # Lista de matriculas dos alunos
         alunos = request.form.getlist('alunos')
 
-        return alunos
+        # Enviando os dados para a classe Turma
+        Turma(periodo=periodo, data_inicio=data_inicio, data_fim=data_fim, codigo_curso=codigo_curso, matricula_professor=matricula_professor, alunos=alunos)
 
-    con = sqlite3.connect("gestao_escolar.db")
+        redirect(url_for("listar_turmas"))
+        
 
-    cur = con.cursor()
+    professores = Professor.listar()
 
-    sql_professores = """
-        SELECT matricula, nome FROM professores ORDER BY nome
-    """
-    cur.execute(sql_professores)
+    cursos = Curso.listar()
 
-    professores = cur.fetchall()
-
-    sql_cursos = """
-        SELECT codigo, nome FROM cursos ORDER BY nome
-    """
-    cur.execute(sql_cursos)
-
-    cursos = cur.fetchall()
-
-    sql_alunos = """
-        SELECT matricula, nome FROM alunos ORDER BY nome
-    """
-
-    cur.execute(sql_alunos)
-    
-    alunos = cur.fetchall()
-
-    con.close()
+    alunos = Aluno.listar()
 
     # A função render_template tem o propósito de ler os arquivos
     # Que estão disponíveis na pasta "templates" e apresentar no navegador do usuário

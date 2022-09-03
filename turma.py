@@ -1,8 +1,8 @@
-from sqlite3 import *
+import sqlite3
 
 class Turma:
 
-    def __init__(self, periodo, data_inicio, data_fim, codigo_curso, matricula_professor):
+    def __init__(self, periodo, data_inicio, data_fim, codigo_curso, matricula_professor, alunos):
 
         self.__codigo = 0
 
@@ -16,6 +16,8 @@ class Turma:
 
         self.matricula_professor = matricula_professor
 
+        self.alunos = alunos
+
         self.salvar()
 
     @property
@@ -27,7 +29,7 @@ class Turma:
 
         # self.verificaPeriodo()
 
-        conexao = connect("gestao_escolar.db")
+        conexao = sqlite3.connect("gestao_escolar.db")
 
         cursor = conexao.cursor()
 
@@ -53,40 +55,26 @@ class Turma:
 
         self.__codigo = cursor.lastrowid
 
-        alunos = [12, 120]
-
-        for aluno in alunos:
-
-            self.matricula(aluno)
-
         conexao.commit()
 
-        conexao.close()
+        # Laço que faz a vinculação da turma com os alunos
+        for aluno in self.alunos:
 
-    # Metodo que faz a vinculação da turma com os alunos
-    def matricula(self, matricula_aluno):
+            sql = f"""
+                INSERT INTO
+                Turmas_Alunos (
+                    codigo_turma,
+                    matricula_aluno
+                )
+                VALUES (
+                    '{self.__codigo}',
+                    '{aluno}'
+                )
+            """
 
-        # self.verificaPeriodo()
+            cursor.execute(sql)
 
-        conexao = connect("gestao_escolar.db")
-
-        cursor = conexao.cursor()
-
-        sql = f"""
-            INSERT INTO
-            Turmas_Alunos (
-                codigo_turma,
-                matricula_aluno
-            )
-            VALUES (
-                '{self.__codigo}',
-                '{matricula_aluno}'
-            )
-        """
-
-        cursor.execute(sql)
-
-        conexao.commit()
+            conexao.commit()
 
         conexao.close()
 
@@ -117,6 +105,59 @@ class Turma:
             raise ValueError('Professor já está em uma turma nesse periodo')
 
         conexao.close()
+    
+    @classmethod
+    def listar(cls):
+
+        # abrindo conexao
+        conexao = sqlite3.connect("gestao_escolar.db")
+
+        # utilizando o metodo cursor
+        # para fazer alguma ação no bd
+        cursor = conexao.cursor()
+
+        sql = f"""
+            SELECT tm.codigo, tm.periodo, tm.data_inicio,
+            tm.data_fim, tm.codigo_curso, cs.nome, tm.matricula_professor, pf.nome
+            FROM Turmas AS tm
+            INNER JOIN Cursos AS cs ON tm.codigo_curso = cs.codigo
+            INNER JOIN Professores AS pf ON tm.matricula_professor = pf.matricula
+        """
+        # executando a ação
+        cursor.execute(sql)
+
+        # lista de alunos recuperados do bd
+        listaTurmas = cursor.fetchall()
+
+        conexao.close()
+
+        return listaTurmas
+
+    @classmethod
+    def listarAlunos(cls, codigo_turma):
+
+        # abrindo conexao
+        conexao = sqlite3.connect("gestao_escolar.db")
+
+        # utilizando o metodo cursor
+        # para fazer alguma ação no bd
+        cursor = conexao.cursor()
+
+        sql = f"""
+            SELECT an.matricula, an.nome, an.cpf, an.telefone, an.email 
+            FROM Alunos AS an
+            INNER JOIN Turmas_Alunos AS tm_an ON an.matricula = tm_an.matricula_aluno
+            WHERE tm_an.codigo_turma = '{codigo_turma}'
+        """
+        # executando a ação
+        cursor.execute(sql)
+
+        # lista de alunos recuperados do bd
+        listaAlunos = cursor.fetchall()
+
+        conexao.close()
+
+        return listaAlunos
 
     def __repr__(self):
 
