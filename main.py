@@ -1,3 +1,5 @@
+import sqlite3
+
 from flask import Flask, render_template, request, redirect, url_for
 
 from aluno import Aluno
@@ -124,3 +126,39 @@ def editar_professor(matricula):
         return redirect(url_for('listar_professores'))
 
     return render_template("editar_professor.html", professor=professor)
+
+# Rotas Turmas
+@app.route("/cadastro/turma", methods=('GET', 'POST'))
+def cadastro_turma():
+
+    if request.method == 'POST':
+
+        alunos = request.form.getlist['alunos']
+
+        return alunos
+
+    con = sqlite3.connect("gestao_escolar.db")
+
+    cur = con.cursor()
+
+    sql_professores = """
+        SELECT matricula, nome FROM professores ORDER BY nome
+    """
+    cur.execute(sql_professores)
+
+    professores = cur.fetchall()
+
+    sql_alunos = """
+        SELECT matricula, nome FROM alunos ORDER BY nome
+    """
+
+    cur.execute(sql_alunos)
+    
+    alunos = cur.fetchall()
+
+    con.close()
+
+    # A função render_template tem o propósito de ler os arquivos
+    # Que estão disponíveis na pasta "templates" e apresentar no navegador do usuário
+    # NOTE: o nome do arquivo é um texto
+    return render_template("cadastro_turma.html", professores=professores, alunos=alunos)
