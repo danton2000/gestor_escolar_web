@@ -127,13 +127,28 @@ main .conteudo-principal .conteudo-formulario .campos-formulario label {
 
 main .conteudo-principal .conteudo-formulario .campos-formulario input {
     width: 100%;
-    height: 3rem;
+    height: 3.6rem;
     border-radius: 2rem;
     margin: 1rem 0 1rem 0;
     padding: 1rem;
     color: var(--preto);
     font-size: 1.2rem;
     border: 1px solid var(--azul-escuro);
+}
+
+main .conteudo-principal .conteudo-formulario .campos-formulario select {
+    width: 100%;
+    border-radius: 2rem;
+    margin: 1rem 0 1rem 0;
+    padding: 1rem;
+    color: var(--preto);
+    font-size: 1.2rem;
+    border: 1px solid var(--azul-escuro);
+}
+
+main .conteudo-principal .conteudo-formulario .campos-formulario select:focus {
+    outline: none;
+    border: 1px solid var(--azul-normal);
 }
 
 main .conteudo-principal .conteudo-formulario .campos-formulario textarea {
@@ -153,15 +168,14 @@ main .conteudo-principal .conteudo-formulario .campos-formulario textarea:focus 
 }
 
 main .conteudo-principal .conteudo-formulario input[type=checkbox] {
-    width: 2rem;
-    height: 2rem;
+    width: 1rem;
+    height: 1rem;
 }
 
 main .conteudo-principal .conteudo-formulario .campos-formulario input:focus {
     outline: none;
     border: 1px solid var(--azul-normal);
 }
-
 
 main .conteudo-principal .conteudo-formulario button {
     background: var(--azul-normal);
@@ -187,4 +201,42 @@ main .conteudo-principal .conteudo-formulario .botao-primario {
     height: 2rem;
     font-size: 1rem;
     font-weight: 400;
+}
+
+/*Alunos */
+main .conteudo-principal .conteudo-formulario h3 {
+    margin: 1rem 0 1rem 0;
+    font-size: 1rem;
+    color: var(--preto);
+    letter-spacing: .1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main .conteudo-principal .conteudo-formulario img {
+    margin-right: 0.5rem;
+}
+
+main .conteudo-principal .conteudo-formulario .conteudo-alunos {
+    /* background-color: #000; */
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;
+}
+
+main .conteudo-principal .conteudo-formulario .conteudo-alunos label {
+    padding: 0.3rem;
+}
+
+/* Mensagem Erro */
+.erro {
+    background: #e7515a;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+.erro h5 {
+    color: #fff;
 }

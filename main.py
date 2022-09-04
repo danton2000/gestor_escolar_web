@@ -197,6 +197,12 @@ def listar_turmas_alunos(codigo_turma):
 @app.route("/cadastro/turma", methods=('GET', 'POST'))
 def cadastro_turma():
 
+    professores = Professor.listar()
+
+    cursos = Curso.listar()
+
+    alunos = Aluno.listar()
+
     # CADASTRO TURMA
     if request.method == 'POST':
 
@@ -213,21 +219,19 @@ def cadastro_turma():
         codigo_curso = request.form['curso']
 
         # Lista de matriculas dos alunos
-        alunos = request.form.getlist('alunos')
+        alunos_selecionados = request.form.getlist('alunos')
 
-        # Enviando os dados para a classe Turma
-        Turma(periodo=periodo, data_inicio=data_inicio, data_fim=data_fim, codigo_curso=codigo_curso, matricula_professor=matricula_professor, alunos=alunos)
+        if len(alunos_selecionados) >= 3:
+            # print("Turma criada")
+            #Enviando os dados para a classe Turma
+            Turma(periodo=periodo, data_inicio=data_inicio, data_fim=data_fim, codigo_curso=codigo_curso, matricula_professor=matricula_professor, alunos=alunos_selecionados)
 
-        redirect(url_for("listar_turmas"))
-        
-
-    professores = Professor.listar()
-
-    cursos = Curso.listar()
-
-    alunos = Aluno.listar()
+            return redirect(url_for("listar_turmas"))
+        else:
+            mensagem = "Selecione pelo menos 3 alunos"
+            return render_template("cadastro_turma.html", professores=professores, cursos=cursos, alunos=alunos, mensagem=mensagem)
 
     # A função render_template tem o propósito de ler os arquivos
     # Que estão disponíveis na pasta "templates" e apresentar no navegador do usuário
     # NOTE: o nome do arquivo é um texto
-    return render_template("cadastro_turma.html", professores=professores, cursos=cursos, alunos=alunos)
+    return render_template("cadastro_turma.html", professores=professores, cursos=cursos, alunos=alunos, mensagem=None)
