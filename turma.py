@@ -27,7 +27,7 @@ class Turma:
 
     def salvar(self):
 
-        # self.verificaPeriodo()
+        self.verificaPeriodo()
 
         conexao = sqlite3.connect("gestao_escolar.db")
 
@@ -77,10 +77,10 @@ class Turma:
             conexao.commit()
 
         conexao.close()
-
+    
     def verificaPeriodo(self):
 
-        conexao = connect("gestao_escolar.db")
+        conexao = sqlite3.connect("gestao_escolar.db")
 
         cursor = conexao.cursor()
         # Nesse SELECT ESTOU VERIFICANDO SE TEM INTERVALO ENTRE AS DATAS

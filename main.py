@@ -8,6 +8,8 @@ from curso import Curso
 
 from turma import Turma
 
+from datetime import datetime
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -224,9 +226,13 @@ def cadastro_turma():
         if len(alunos_selecionados) >= 3:
             # print("Turma criada")
             #Enviando os dados para a classe Turma
-            Turma(periodo=periodo, data_inicio=data_inicio, data_fim=data_fim, codigo_curso=codigo_curso, matricula_professor=matricula_professor, alunos=alunos_selecionados)
+            try:
+                Turma(periodo=periodo, data_inicio=data_inicio, data_fim=data_fim, codigo_curso=codigo_curso, matricula_professor=matricula_professor, alunos=alunos_selecionados)
 
-            return redirect(url_for("listar_turmas"))
+                return redirect(url_for("listar_turmas"))
+            except ValueError as erro:
+                mensagem = erro
+                return render_template("cadastro_turma.html", professores=professores, cursos=cursos, alunos=alunos, mensagem=mensagem)
         else:
             mensagem = "Selecione pelo menos 3 alunos"
             return render_template("cadastro_turma.html", professores=professores, cursos=cursos, alunos=alunos, mensagem=mensagem)

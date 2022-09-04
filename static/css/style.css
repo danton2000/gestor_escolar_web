@@ -240,3 +240,12 @@ main .conteudo-principal .conteudo-formulario .conteudo-alunos label {
 .erro h5 {
     color: #fff;
 }
+
+/* Data Disabled */
+input:disabled {
+    background: transparent;
+    border: 0;
+    color: var(--preto);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
