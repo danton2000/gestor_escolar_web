@@ -15,15 +15,19 @@
                 <th>Email</th>
             </tr>
             <!-- conteudo(corpo) da tabela -->
-            {% for aluno in alunos %}
-            <tr>
-                <td>{{ aluno[0] }}</td>
-                <td>{{ aluno[1] }}</td>
-                <td>{{ aluno[2] }}</td>
-                <td>{{ aluno[3] }}</td>
-                <td>{{ aluno[4] }}</td>
-            </tr>
-            {% endfor %}
+            {% if alunos %}
+                {% for aluno in alunos %}
+                <tr>
+                    <td>{{ aluno[0] }}</td>
+                    <td>{{ aluno[1] }}</td>
+                    <td>{{ aluno[2] }}</td>
+                    <td>{{ aluno[3] }}</td>
+                    <td>{{ aluno[4] }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <td colspan="5">Sem alunos nessa turma.</td>
+            {% endif %}
         </table>
         <a href="/listar/turmas" class="botao-primario">Voltar</a>
     </div>

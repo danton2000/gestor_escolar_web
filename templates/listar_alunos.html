@@ -16,16 +16,21 @@
                 <th></th>
             </tr>
             <!-- conteudo(corpo) da tabela -->
-            {% for aluno in alunos %}
-            <tr>
-                <td>{{ aluno[0] }}</td>
-                <td>{{ aluno[1] }}</td>
-                <td>{{ aluno[2] }}</td>
-                <td>{{ aluno[3] }}</td>
-                <td>{{ aluno[4] }}</td>
-                <td><a href="/editar/aluno/{{ aluno[0] }}" class="botao-primario">Editar</a></td>
-            </tr>
-            {% endfor %}
+            {% if alunos %}
+                {% for aluno in alunos %}
+                    <tr>
+                        <td>{{ aluno[0] }}</td>
+                        <td>{{ aluno[1] }}</td>
+                        <td>{{ aluno[2] }}</td>
+                        <td>{{ aluno[3] }}</td>
+                        <td>{{ aluno[4] }}</td>
+                        <td><a href="/editar/aluno/{{ aluno[0] }}" class="botao-primario">Editar</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <td colspan="6">Sem alunos cadastrados.</td>
+            {% endif %}
+            
         </table>
         <a href="/" class="botao-primario">Voltar</a>
     </div>

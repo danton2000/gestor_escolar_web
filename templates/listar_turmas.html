@@ -17,23 +17,27 @@
                 <th></th>
             </tr>
             <!-- conteudo(corpo) da tabela -->
-            {% for turma in turmas %}
-            <tr>
-                <td>{{ turma[0] }}</td>
-                <td>{{ turma[1] }}</td>
-                <td><input type="date" value="{{ turma[2] }}" disabled></td>
-                <td><input type="date" value="{{ turma[3] }}" disabled></td>
-                <td>{{ turma[4] }} - {{ turma[5] }}</td>
-                <td>{{ turma[6] }} - {{ turma[7] }}</td>
-                <td>
-                    <a
-                        href="/listar/turmas_alunos/{{ turma[0] }}"
-                        class="botao-primario"
-                        >Ver Alunos</a
-                    >
-                </td>
-            </tr>
-            {% endfor %}
+            {% if turmas %}
+                {% for turma in turmas %}
+                <tr>
+                    <td>{{ turma[0] }}</td>
+                    <td>{{ turma[1] }}</td>
+                    <td><input type="date" value="{{ turma[2] }}" disabled></td>
+                    <td><input type="date" value="{{ turma[3] }}" disabled></td>
+                    <td>{{ turma[4] }} - {{ turma[5] }}</td>
+                    <td>{{ turma[6] }} - {{ turma[7] }}</td>
+                    <td>
+                        <a
+                            href="/listar/turmas_alunos/{{ turma[0] }}"
+                            class="botao-primario"
+                            >Ver Alunos</a
+                        >
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <td colspan="7">Sem turmas cadastradas.</td>
+            {% endif %}
         </table>
         <a href="/" class="botao-primario">Voltar</a>
     </div>

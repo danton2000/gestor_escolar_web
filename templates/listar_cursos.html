@@ -19,24 +19,30 @@
                 <th></th>
             </tr>
             <!-- conteudo(corpo) da tabela -->
-            {% for curso in cursos %}
-            <tr>
-                <td>{{ curso[0] }}</td>
-                <td>{{ curso[1] }}</td>
-                <td>{{ curso[2] }}</td>
-                <td>
-                    {% if curso[3] == 1 %} Sim {% else %} Não {% endif %}
-                </td>
-                <td>{{ curso[4] }}</td>
-                <td>
-                    <a
-                        href="/editar/curso/{{ curso[0] }}"
-                        class="botao-primario"
-                        >Editar</a
-                    >
-                </td>
-            </tr>
-            {% endfor %}
+            
+
+            {% if cursos %}
+                {% for curso in cursos %}
+                <tr>
+                    <td>{{ curso[0] }}</td>
+                    <td>{{ curso[1] }}</td>
+                    <td>{{ curso[2] }}</td>
+                    <td>
+                        {% if curso[3] == 1 %} Sim {% else %} Não {% endif %}
+                    </td>
+                    <td>{{ curso[4] }}</td>
+                    <td>
+                        <a
+                            href="/editar/curso/{{ curso[0] }}"
+                            class="botao-primario"
+                            >Editar</a
+                        >
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <td colspan="6">Sem cursos cadastrados.</td>
+            {% endif %}
         </table>
         <a href="/" class="botao-primario">Voltar</a>
     </div>
