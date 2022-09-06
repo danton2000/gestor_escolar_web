@@ -109,6 +109,10 @@ main .conteudo-principal .conteudo-tabela table td {
     padding: 0.5rem;
 }
 
+main .conteudo-principal .conteudo-tabela table td input[type="date"]{
+    text-align: center;
+}
+
 /* PAGINA FORMULARIOS(CADASTRO/EDITAR) */
 main .conteudo-principal .conteudo-formulario {
     width: 40rem;
@@ -241,7 +245,13 @@ main .conteudo-principal .conteudo-formulario .conteudo-alunos label {
     color: #fff;
 }
 
-/* Data Disabled */
+/* Input Date */
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
 input:disabled {
     background: transparent;
     border: 0;
