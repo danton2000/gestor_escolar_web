@@ -172,8 +172,8 @@ main .conteudo-principal .conteudo-formulario .campos-formulario textarea:focus 
 }
 
 main .conteudo-principal .conteudo-formulario input[type=checkbox] {
-    width: 1rem;
-    height: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 main .conteudo-principal .conteudo-formulario .campos-formulario input:focus {
