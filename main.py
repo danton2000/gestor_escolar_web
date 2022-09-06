@@ -8,8 +8,6 @@ from curso import Curso
 
 from turma import Turma
 
-from datetime import datetime
-
 app = Flask(__name__)
 
 @app.route("/")
