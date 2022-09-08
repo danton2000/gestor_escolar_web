@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 
+from flask_bootstrap import Bootstrap
+
 from aluno import Aluno
 
 from professor import Professor
@@ -9,6 +11,8 @@ from curso import Curso
 from turma import Turma
 
 app = Flask(__name__)
+
+bootstrap = Bootstrap(app)
 
 @app.route("/")
 def index():

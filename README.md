@@ -4,9 +4,6 @@ Como uma prática de desenvolvimento é interresante criar as telas para depois 
 
 > NOTA: Todo o HTML é implementado dentro do dirtório templates
 
-
-> Oi teste
-
 # azul - escuro
 
     RGB : 12, 44, 82
